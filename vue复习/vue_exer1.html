@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue复习1</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="div0">
+        <table border="1" width="50%">
+            <tr>
+                <th>编号</th>
+                <th>英雄名称</th>
+                <th>所属阵营</th>
+                <th>星级</th>
+                <th>梯度</th>
+                <th>常用阵容</th>
+                <th>版本强弱</th>
+            </tr>
+            <tr align="center" v-for="(info,index) in infos">
+                <td>{{index+1}}</td>
+                <td>{{info.name}}</td>
+                <td>{{info.group}}</td>
+                <td>{{info.level}}</td>
+                <td>{{info.tank}}</td>
+                <td>{{info.lineup}}</td>
+                <td>
+                    <span v-if="info.tank=='t0'">强势</span>
+                    <span v-else-if="info.tank=='t0.5'">强势</span>
+                    <span v-else>弱势</span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</body>
+<script>
+    Vue.config.productionTip=false;
+    const vm =new Vue({
+        el:"#div0",
+        data:{
+            infos: [
+            {
+                id: 1,
+                name: "沙皇",
+                group: "恕瑞玛，司令",
+                level: 4,
+                tank: "t0",
+                lineup: "六恕瑞玛"
+            },
+            {
+                id: 2,
+                name: "卑尔维斯",
+                group: "虚空，女皇",
+                level: 5,
+                tank: "t2",
+                lineup: "6/8虚空，九五"
+            },
+            {
+                id: 3,
+                name: "崔斯特",
+                group: "比尔吉沃特，术士",
+                level: 2,
+                tank: "t1",
+                lineup: "四术卡牌"
+            },
+            {
+                id: 4,
+                name: "卡尔玛",
+                group: "艾欧尼亚, 神谕者",
+                level: 3,
+                tank: "t0.5",
+                lineup: "六神谕/八神谕，六艾欧"
+            }]
+        }
+    })
+    console.log(vm)
+</script>
+
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios传参到表</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>-->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="infotable">
+        <table border="1" width="50%">
+            <tr>
+                <th>编号</th>
+                <th>英雄名称</th>
+                <th>所属阵营</th>
+                <th>星级</th>
+                <th>梯度</th>
+                <th>常用阵容</th>
+            </tr>
+            <tr  v-for="(info,index) in infos">
+                <td>{{index+1}}</td>
+                <td>{{info.name}}</td>
+                <td>{{info.group}}</td>
+                <td>{{info.level}}</td>
+                <td>{{info.tank}}</td>
+                <td>{{info.lineup}}</td>
+            </tr>
+        </table>
+    </div>
+    <input type="text" v-model="url">
+
+</body>
+<script>
+    Vue.config.producionTip=false;
+
+    new Vue(
+        {
+            el:'#infotable',
+            data:
+            {
+                infos:[],
+                url:"https://stu.ityxb.com/"
+            },
+            mounted()
+            {
+                //发送异步请求
+                axios({
+                    method:"GET",
+                    url:"http://localhost:3000/data"
+                }).then(response=>{
+                    this.infos=response.data
+                    console.log(response.data)
+                    console.log(this.infos)
+                    })
+                // axios.get("http://localhost:3000/posts")
+                // .then(result =>{
+                //     this.infos=result.data.posts;
+                // })
+            }
+        })
+
+</script>
+
+
+</html>
